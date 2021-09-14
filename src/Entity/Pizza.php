@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PizzaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,6 +54,16 @@ class Pizza
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Size::class, inversedBy="pizzas")
+     */
+    private $size;
+
+    public function __construct()
+    {
+        $this->size = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,6 +150,30 @@ class Pizza
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Size[]
+     */
+    public function getSize(): Collection
+    {
+        return $this->size;
+    }
+
+    public function addSize(Size $size): self
+    {
+        if (!$this->size->contains($size)) {
+            $this->size[] = $size;
+        }
+
+        return $this;
+    }
+
+    public function removeSize(Size $size): self
+    {
+        $this->size->removeElement($size);
 
         return $this;
     }
