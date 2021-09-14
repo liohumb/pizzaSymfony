@@ -60,9 +60,15 @@ class Wine
      */
     private $size;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Option::class, inversedBy="wines")
+     */
+    private $color;
+
     public function __construct()
     {
         $this->size = new ArrayCollection();
+        $this->color = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,7 +160,7 @@ class Wine
         return $this;
     }
 
-    public function getSize(): ?Size
+    public function getSize(): ArrayCollection
     {
         return $this->size;
     }
@@ -178,6 +184,30 @@ class Wine
     public function removeSize(Size $size): self
     {
         $this->size->removeElement($size);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Option[]
+     */
+    public function getColor(): Collection
+    {
+        return $this->color;
+    }
+
+    public function addColor(Option $color): self
+    {
+        if (!$this->color->contains($color)) {
+            $this->color[] = $color;
+        }
+
+        return $this;
+    }
+
+    public function removeColor(Option $color): self
+    {
+        $this->color->removeElement($color);
 
         return $this;
     }
