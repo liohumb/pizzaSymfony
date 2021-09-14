@@ -29,9 +29,15 @@ class Category
      */
     private $pizzas;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Drink::class, mappedBy="category")
+     */
+    private $drinks;
+
     public function __construct()
     {
         $this->pizzas = new ArrayCollection();
+        $this->drinks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Category
             // set the owning side to null (unless already changed)
             if ($pizza->getCategory() === $this) {
                 $pizza->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Drink[]
+     */
+    public function getDrinks(): Collection
+    {
+        return $this->drinks;
+    }
+
+    public function addDrink(Drink $drink): self
+    {
+        if (!$this->drinks->contains($drink)) {
+            $this->drinks[] = $drink;
+            $drink->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDrink(Drink $drink): self
+    {
+        if ($this->drinks->removeElement($drink)) {
+            // set the owning side to null (unless already changed)
+            if ($drink->getCategory() === $this) {
+                $drink->setCategory(null);
             }
         }
 
