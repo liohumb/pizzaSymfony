@@ -30,9 +30,20 @@ class Option
      */
     private $wines;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=IceCream::class, mappedBy="parfum")
+     */
+    private $iceCreams;
+
     public function __construct()
     {
         $this->wines = new ArrayCollection();
+        $this->iceCreams = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     public function getId(): ?int
@@ -74,6 +85,33 @@ class Option
     {
         if ($this->wines->removeElement($wine)) {
             $wine->removeColor($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|IceCream[]
+     */
+    public function getIceCreams(): Collection
+    {
+        return $this->iceCreams;
+    }
+
+    public function addIceCream(IceCream $iceCream): self
+    {
+        if (!$this->iceCreams->contains($iceCream)) {
+            $this->iceCreams[] = $iceCream;
+            $iceCream->addParfum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIceCream(IceCream $iceCream): self
+    {
+        if ($this->iceCreams->removeElement($iceCream)) {
+            $iceCream->removeParfum($this);
         }
 
         return $this;
