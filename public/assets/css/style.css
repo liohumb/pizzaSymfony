@@ -106,6 +106,7 @@ ul {
 
 a {
     text-decoration: none;
+    color: var(--text-color);
 }
 
 img {
@@ -136,9 +137,9 @@ button, select {
 }
 
 button, input, select, textarea {
-    color: #5A5A5A;
+    color: var(--text-color);
     font: inherit;
-    margin: 0;
+    margin: 2rem;
 }
 
 input {
@@ -1233,6 +1234,12 @@ td {
     text-transform: uppercase;
 }
 
+.connexion__form-subtitle {
+    color: var(--text-color);
+    font-size: 16px;
+    text-align: center;
+}
+
 
 /* PAGE RÉPONSE FORMULAIRE CONTACT */
 
@@ -1564,47 +1571,93 @@ td {
 /* PAGE MON COMPTE */
 
 
-.account {
-    margin-top: 3rem;
+.account__title {
+    color: var(--text-color);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 7px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .account__info {
     display: flex;
-    column-gap: 1rem;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3rem;
 }
 
 .account__info-title {
-    font-size: 2em;
-    font-weight: 800;
+    font-size: 23px;
+    font-weight: 600;
     text-transform: uppercase;
+    margin-bottom: .5rem;
+}
+
+.account__info-subtitle {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-left: .5rem;
 }
 
 .account__data {
-    text-align: end;
-    margin-right: 6rem;
-}
-
-.account__data-title {
-    margin-top: 1rem;
-}
-
-.account__button {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
-.account__button-option {
-    margin-top: 4rem;
-    margin-right: 1rem;
+.account__card {
+    position: relative;
+    width: 200px;
+    overflow: var(--img-hidden);
+}
+
+.account__img {
+    transition: var(--img-transition);
+    filter: saturate(0);
+}
+
+.account__img:hover {
+    transform: var(--img-scale);
+    filter: saturate(100%);
+}
+
+.account__card-data {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1rem;
+}
+
+.account__card-title {
+    color: var(--white-color);
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-25);
+}
+
+.account__form-notification {
+    text-align: center;
 }
 
 @media screen and (min-width: 768px) {
     .account__container {
-        grid-template-columns: repeat(2, 1fr);
-        align-items: center;
+        width: 610px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 2rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .account__container {
+        width: 700px;
+    }
+    .account__card-data {
+        left: 1.5rem;
+        bottom: 2rem;
+    }
+    .account__dat-title {
+        font-size: var(--h2-font-size);
     }
 }
 

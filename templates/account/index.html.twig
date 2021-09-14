@@ -1,20 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %}Mon compte • Lorenzzo's Pizza{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block hero %}{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% block content %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/lio/Documents/cours/AFPA/Symfony/pizzaSymfony/src/Controller/AccountController.php'|file_link(0) }}">src/Controller/AccountController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/lio/Documents/cours/AFPA/Symfony/pizzaSymfony/templates/account/index.html.twig'|file_link(0) }}">templates/account/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <section class="account section">
+
+        <div class="account container grid">
+
+            <h1 class="account__title">Mon compte</h1>
+
+            <div class="account__info">
+                <h2 class="account__info-title">Bienvenue {{ app.user.firstname }},</h2>
+                <p class="account__info-subtitle"><i>c'est dans cet espace que vous allez pouvoir gérer toutes vos information personnelles.</i></p>
+            </div>
+
+            <div class="account__data">
+                <div class="button">
+                    <a href="{{ path('home') }}" class="button__title button__slide-effect">Retour à l'acceuil</a>
+                </div>
+            </div>
+
+            <div class="account__container container swiper__container swiper-container">
+
+                <div class="swiper-wrapper">
+
+                    <div class="account__card swiper-slide">
+                        <a href="{{ path('account_password') }}">
+
+                            <img src="{{ asset('assets/img/account1.jpg') }}" alt="" class="account__img">
+
+                            <div class="account__card-data">
+                                <h2 class="account__card-title">Modifier mon mot de passe</h2>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="account__card swiper-slide">
+                        <a href="#">
+
+                            <img src="{{ asset('assets/img/account2.jpg') }}" alt="" class="account__img">
+
+                            <div class="account__card-data">
+                                <h2 class="account__card-title">Gérer mes adresses</h2>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="account__card swiper-slide">
+                        <a href="#">
+
+                            <img src="{{ asset('assets/img/account3.jpg') }}" alt="" class="account__img">
+
+                            <div class="account__card-data">
+                                <h2 class="account__card-title">Voir mes commandes</h2>
+                            </div>
+
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 {% endblock %}
