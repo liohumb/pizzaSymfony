@@ -29,9 +29,15 @@ class Size
      */
     private $pizzas;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Drink::class, mappedBy="size")
+     */
+    private $drinks;
+
     public function __construct()
     {
         $this->pizzas = new ArrayCollection();
+        $this->drinks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,6 +79,33 @@ class Size
     {
         if ($this->pizzas->removeElement($pizza)) {
             $pizza->removeSize($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Drink[]
+     */
+    public function getDrinks(): Collection
+    {
+        return $this->drinks;
+    }
+
+    public function addDrink(Drink $drink): self
+    {
+        if (!$this->drinks->contains($drink)) {
+            $this->drinks[] = $drink;
+            $drink->addSize($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDrink(Drink $drink): self
+    {
+        if ($this->drinks->removeElement($drink)) {
+            $drink->removeSize($this);
         }
 
         return $this;
