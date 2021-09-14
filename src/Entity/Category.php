@@ -34,10 +34,16 @@ class Category
      */
     private $drinks;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Dessert::class, mappedBy="category")
+     */
+    private $desserts;
+
     public function __construct()
     {
         $this->pizzas = new ArrayCollection();
         $this->drinks = new ArrayCollection();
+        $this->desserts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +117,36 @@ class Category
             // set the owning side to null (unless already changed)
             if ($drink->getCategory() === $this) {
                 $drink->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dessert[]
+     */
+    public function getDesserts(): Collection
+    {
+        return $this->desserts;
+    }
+
+    public function addDessert(Dessert $dessert): self
+    {
+        if (!$this->desserts->contains($dessert)) {
+            $this->desserts[] = $dessert;
+            $dessert->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDessert(Dessert $dessert): self
+    {
+        if ($this->desserts->removeElement($dessert)) {
+            // set the owning side to null (unless already changed)
+            if ($dessert->getCategory() === $this) {
+                $dessert->setCategory(null);
             }
         }
 
