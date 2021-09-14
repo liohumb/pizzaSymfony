@@ -39,11 +39,28 @@ class Category
      */
     private $desserts;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Wine::class, mappedBy="category")
+     */
+    private $wines;
+
+    /**
+     * @ORM\OneToMany(targetEntity=IceCream::class, mappedBy="category")
+     */
+    private $iceCreams;
+
     public function __construct()
     {
         $this->pizzas = new ArrayCollection();
         $this->drinks = new ArrayCollection();
         $this->desserts = new ArrayCollection();
+        $this->wines = new ArrayCollection();
+        $this->iceCreams = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     public function getId(): ?int
@@ -147,6 +164,66 @@ class Category
             // set the owning side to null (unless already changed)
             if ($dessert->getCategory() === $this) {
                 $dessert->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Wine[]
+     */
+    public function getWines(): Collection
+    {
+        return $this->wines;
+    }
+
+    public function addWine(Wine $wine): self
+    {
+        if (!$this->wines->contains($wine)) {
+            $this->wines[] = $wine;
+            $wine->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWine(Wine $wine): self
+    {
+        if ($this->wines->removeElement($wine)) {
+            // set the owning side to null (unless already changed)
+            if ($wine->getCategory() === $this) {
+                $wine->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|IceCream[]
+     */
+    public function getIceCreams(): Collection
+    {
+        return $this->iceCreams;
+    }
+
+    public function addIceCream(IceCream $iceCream): self
+    {
+        if (!$this->iceCreams->contains($iceCream)) {
+            $this->iceCreams[] = $iceCream;
+            $iceCream->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIceCream(IceCream $iceCream): self
+    {
+        if ($this->iceCreams->removeElement($iceCream)) {
+            // set the owning side to null (unless already changed)
+            if ($iceCream->getCategory() === $this) {
+                $iceCream->setCategory(null);
             }
         }
 

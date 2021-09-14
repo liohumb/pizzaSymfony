@@ -160,7 +160,10 @@ class Wine
         return $this;
     }
 
-    public function getSize(): ArrayCollection
+    /**
+     * @return Collection
+     */
+    public function getSize(): Collection
     {
         return $this->size;
     }

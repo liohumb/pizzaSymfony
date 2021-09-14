@@ -38,11 +38,6 @@ class Dessert
     private $subtitle;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $describtion;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $description;

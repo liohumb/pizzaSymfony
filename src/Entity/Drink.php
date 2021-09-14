@@ -138,7 +138,7 @@ class Drink
     }
 
     /**
-     * @return Collection|Size[]
+     * @return Collection
      */
     public function getSize(): Collection
     {
