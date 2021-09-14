@@ -22,20 +22,27 @@ class PizzaCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-          TextField::new('name'),
+          TextField::new('name',
+          'Nom de la pizza'),
           SlugField::new('slug')
             ->setTargetFieldName('name'),
-          ImageField::new('illustration')
+          ImageField::new('illustration',
+          'Photo de la pizza')
             ->setBasePath('uploads/')
             ->setUploadDir('public/uploads')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
             ->setRequired(false),
-          TextField::new('subtitle'),
-          TextareaField::new('description'),
-          MoneyField::new('price')
+          TextField::new('subtitle',
+          'Sous-titre'),
+          TextareaField::new('description',
+          'Description de la pizza'),
+          MoneyField::new('price',
+          'Prix')
             ->setCurrency('EUR'),
-          AssociationField::new('category'),
-          AssociationField::new('size')
+          AssociationField::new('category',
+          'Catégorie'),
+          AssociationField::new('size',
+          'Taille de la pizza')
         ];
     }
 
