@@ -22,20 +22,27 @@ class IceCreamCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
+            TextField::new('name',
+            'Nom de la glace'),
             SlugField::new('slug')
                 ->setTargetFieldName('name'),
-            ImageField::new('illustration')
+            ImageField::new('illustration',
+            'Photo de la glace')
                 ->setBasePath('uploads/')
                 ->setUploadDir('public/uploads')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
-            TextField::new('subtitle'),
-            TextareaField::new('description'),
-            MoneyField::new('price')
+            TextField::new('subtitle',
+            'Sous titre'),
+            TextareaField::new('description',
+            'Description de la glace'),
+            MoneyField::new('price',
+            'Prix')
                 ->setCurrency('EUR'),
-            AssociationField::new('category'),
-            AssociationField::new('parfum')
+            AssociationField::new('category',
+            'Catégorie'),
+            AssociationField::new('parfum',
+            'Parfum de la glace')
         ];
     }
 

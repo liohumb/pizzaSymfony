@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Option;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class OptionCrudController extends AbstractCrudController
 {
@@ -12,14 +13,12 @@ class OptionCrudController extends AbstractCrudController
         return Option::class;
     }
 
-    /*
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('name', "Nom de l'option")
         ];
     }
-    */
+
 }
