@@ -1062,6 +1062,7 @@ td {
     column-gap: 1rem;
     align-items: center;
     justify-content: center;
+    margin-top: 3rem;
 }
 
 .products__info-title {
@@ -1078,7 +1079,10 @@ td {
 }
 
 .products__data {
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    margin-top: 2rem;
 }
 
 .products__data-name {
@@ -1088,13 +1092,14 @@ td {
 }
 
 .products__data-price {
+    margin-top: 2rem;
     font-size: 4em;
     font-weight: 900;
     color: var(--first-color);
 }
 
 .products__data-description {
-    margin-top: 1rem;
+    margin-top: 4rem;
 }
 
 .products__data-preferences {
@@ -1102,7 +1107,7 @@ td {
     flex-direction: column;
     align-items: center;
     list-style: none;
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 .products__data-preferencesTailleOption,
@@ -1123,29 +1128,37 @@ td {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 4rem;
 }
 
 @media screen and (min-width: 768px) {
+    .products {
+        padding: 10rem 0 2rem;
+    }
     .products__container {
         grid-template-columns: repeat(2, 1fr);
         align-items: center;
     }
+    .products__info{
+        margin-top: -10rem;
+    }
     .products__data {
+        display: flex;
+        flex-direction: column;
         text-align: end;
-        margin-right: 4rem;
     }
     .products__data-preferences {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         list-style: none;
-        margin-top: 2rem;
+        margin-top: 4rem;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .products__info-img {
-        width: 450px;
+        width: 400px;
     }
 }
 

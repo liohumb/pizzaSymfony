@@ -1,20 +1,155 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}Le menu • Lorenzzo's Pizza{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block hero %}{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% block content %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/lio/Documents/cours/AFPA/Symfony/pizzaSymfony/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/lio/Documents/cours/AFPA/Symfony/pizzaSymfony/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <section class="menu_section section">
+
+        <h1 class="menu__data-title">Vous avez faim ?</h1>
+        <p class="menu__data-subtitle">Faites votre choix</p>
+
+        <h2 class="section__title menu__category">Nos pizzas</h2>
+
+        <div class="menu__container container swiper__container swiper-container">
+
+            <div class="swiper-wrapper">
+
+                {% for pizza in pizzas %}
+
+                <div class="menu__card swiper-slide">
+                    <a href="{{ path('pizza', { 'slug' : pizza.slug }) }}">
+
+                        <img src="/uploads/{{ pizza.illustration }}" alt="{{ pizza.name }}" class="menu__img">
+
+                        <div class="menu__data">
+
+                            <h2 class="menu__data-titleProduct">{{ pizza.name }}</h2>
+
+                        </div>
+
+                    </a>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <h2 class="section__title menu__category">Nos desserts</h2>
+
+        <div class="menu__container container swiper__container swiper-container">
+
+            <div class="swiper-wrapper">
+
+                {% for dessert in desserts %}
+
+                    <div class="menu__card swiper-slide">
+                        <a href="{{ path('dessert', { 'slug' : dessert.slug }) }}">
+
+                            <img src="/uploads/{{ dessert.illustration }}" alt="{{ dessert.name }}" class="menu__img">
+
+                            <div class="menu__data">
+
+                                <h2 class="menu__data-titleProduct">{{ dessert.name }}</h2>
+
+                            </div></a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <h2 class="section__title menu__category">Nos glaces</h2>
+
+        <div class="menu__container container swiper__container swiper-container">
+
+            <div class="swiper-wrapper">
+
+                {% for iceCream in iceCreams %}
+
+                    <div class="menu__card swiper-slide">
+                        <a href="{{ path('iceCream', { 'slug' : iceCream.slug }) }}">
+
+                            <img src="/uploads/{{ iceCream.illustration }}" alt="{{ iceCream.name }}" class="menu__img">
+
+                            <div class="menu__data">
+
+                                <h2 class="menu__data-titleProduct">{{ iceCream.name }}</h2>
+
+                            </div>
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <h2 class="section__title menu__category">Nos boissons</h2>
+
+        <div class="menu__container container swiper__container swiper-container">
+
+            <div class="swiper-wrapper">
+
+                {% for drink in drinks %}
+
+                    <div class="menu__card swiper-slide">
+                        <a href="{{ path('drink', { 'slug' : drink.slug }) }}">
+
+                            <img src="/uploads/{{ drink.illustration }}" alt="{{ drink.name }}" class="menu__img">
+
+                            <div class="menu__data">
+
+                                <h2 class="menu__data-titleProduct">{{ drink.name }}</h2>
+
+                            </div>
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <h2 class="section__title menu__category">Nos bouteilles de vin</h2>
+
+        <div class="menu__container container swiper__container swiper-container">
+
+            <div class="swiper-wrapper">
+
+                {% for wine in wines %}
+
+                    <div class="menu__card swiper-slide">
+                        <a href="{{ path('wine', { 'slug' : wine.slug }) }}">
+
+                            <img src="/uploads/{{ wine.illustration }}" alt="{{ wine.name }}" class="menu__img">
+
+                            <div class="menu__data">
+
+                                <h2 class="menu__data-titleProduct">{{ wine.name }}</h2>
+
+                            </div>
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
 {% endblock %}

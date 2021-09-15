@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ iceCream.name }} • Lorenzzo's Pizza{% endblock %}
+
+{% block hero %}{% endblock %}
+
+{% block content %}
+
+    <section class="products section">
+
+        <div class="products__container container grid">
+
+            <div class="products__info">
+                <div class="products__info-title">
+                    <img src="/uploads/{{ iceCream.illustration }}" class="products__info-img" alt="">
+                </div>
+            </div>
+
+            <div class="products__data">
+
+                <h1 class="products__data-name">{{ iceCream.name }}</h1>
+                <span class="products__data-subtitle">{{ iceCream.subtitle }}</span>
+                <h2 class="products__data-price">{{ (iceCream.price / 100)|number_format(2, ',', '.') }} €</h2>
+                <h3 class="products__data-description"><i>{{ iceCream.description }}</i></h3>
+
+                <ul class="products__data-preferences">
+                    <li>
+                        <span class="products__data-preferencesParfum">Parfum :</span>
+                        <label>
+                            <select name="optionSelect" class="products__data-preferencesParfumOption">
+                                <option value=""></option>
+                            </select>
+                        </label>
+                    </li>
+
+                    <li>
+                        <span class="products__data-preferencesQuantity">Quantité :</span>
+                        <label>
+                            <select name="quantity" class="products__data-preferencesQuantityOption">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </label>
+                    </li>
+
+                </ul>
+
+                <div class="products__button">
+                    <div class="button">
+                        <button type ="submit" class="button__title button__slide-effect">Ajouter au panier</button>
+                    </div>
+                    <div class="button">
+                        <a href="{{ path('products') }}" class="button__title button__slide-effect">Retour au menu</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}
